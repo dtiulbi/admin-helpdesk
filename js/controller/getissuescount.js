@@ -1,5 +1,4 @@
-import Octokit  from "https://cdn.skypack.dev/@octokit/core";
-import tukangngerjain  from ".getissues.js";
+import { Octokit } from "https://cdn.skypack.dev/@octokit/core";
 
 const nekot = 'Z2hwX2lmVW94RGVyaWdxWDdicXg4RzdFNklMczlQTUtGVTJnaVlZZg==';
 
@@ -58,7 +57,15 @@ async function getAssigneeStats() {
     });
 
     const sortedAssignees = Object.entries(assigneeCount).sort((a, b) => b[1] - a[1]);
-
+    const tukangngerjain = {
+      "valenrio66": "Valen Rionald",
+      "christyuda": "Christian Yuda Pratama",
+      "Bachtiar21": "Bachtiar Ramadhan",
+      "rofinafiin": "Rofi Nafiis Zain",
+      "jpratama7": "Jose Chasey Pratama",
+      
+  
+    };
     assigneeStatsContainer.innerHTML = '';
 
     sortedAssignees.forEach(([assigneeLogin, count]) => { 
@@ -72,6 +79,8 @@ async function getAssigneeStats() {
       `;
       assigneeStatsContainer.appendChild(assigneeItem);
     });
+
+    
   } catch (error) {
     console.error('Failed to fetch assignee stats:', error);
   }
