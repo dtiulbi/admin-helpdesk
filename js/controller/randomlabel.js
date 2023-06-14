@@ -24,17 +24,18 @@ export function getLabelColor(labelName) {
           return {
           color: '#22A699', 
           margin: '0 5px' 
-              };
+          };
       case 'Dias':
           return {
           color: '#22A699', 
           margin: '0 5px' 
           };
-      case 'popular':
+      case 'Sudah Selesai':
             return {
             color: '#73BBC9', 
             margin: '0 5px' 
           };
+
       default:
         return {
           color: getRandomColor(),

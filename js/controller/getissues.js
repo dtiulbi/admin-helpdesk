@@ -1,5 +1,7 @@
 import { Octokit } from "https://cdn.skypack.dev/@octokit/core";
 import { createLabelButton } from "./createlabel.js";
+import { getLabelColor } from "./randomlabel.js"
+
 
 const nekot = 'Z2hwX2lmVW94RGVyaWdxWDdicXg4RzdFNklMczlQTUtGVTJnaVlZZg==';
 
@@ -15,6 +17,7 @@ const issueTable = document.getElementById('issue_table'); // Ambil elemen tabel
 const tbody = document.getElementById('issue_body'); // Ambil elemen tbody
 const prevButton = document.getElementById('prev_button'); // Tombol halaman sebelumnya
 const nextButton = document.getElementById('next_button'); // Tombol halaman berikutnya
+
 
 prevButton.addEventListener('click', () => {
   if (currentPage > 1) {
@@ -50,6 +53,7 @@ async function getIssues() {
     const issues = response.data;
     totalPages = Math.ceil(response.headers['link'] ? response.headers['link'].match(/page=(\d+)>; rel="last"/)[1] : 1);
 
+    
     issues.forEach((issue) => {
       const row = document.createElement('tr');
 
@@ -63,6 +67,7 @@ async function getIssues() {
 
       const sinceCell = document.createElement('td');
       const date = new Date(issue.since || issue.created_at); 
+      
       const formattedDate = formatDate(date); 
       sinceCell.textContent = formattedDate;      
       row.appendChild(sinceCell);
@@ -70,6 +75,8 @@ async function getIssues() {
       const labelsCell = document.createElement('td');
       issue.labels.forEach((label) => {
         const labelButton = createLabelButton(label.name);
+        const labelStyle = getLabelColor(label.name);
+        labelButton.style.margin = labelStyle.margin;
         labelsCell.appendChild(labelButton);
       });
       row.appendChild(labelsCell);
@@ -86,15 +93,9 @@ async function getIssues() {
     console.error('Failed to fetch issues:', error);
   }
 }
-function formatDate(date) {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-  
-    return `${day}-${month}-${year}`;
-  }
 
-getIssues();
+
+
 
   
   function getFormattedAssignee(assignee) {
@@ -105,7 +106,7 @@ getIssues();
     }
   }
 
-  const tukangngerjain = {
+  export const tukangngerjain = {
     "valenrio66": "Valen Rionald",
     "christyuda": "Christian Yuda Pratama",
     "Bachtiar21": "Bachtiar Ramadhan",
@@ -114,3 +115,13 @@ getIssues();
     
 
   };
+
+  function formatDate(date) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+  
+    return `${day}-${month}-${year}`;
+  }
+  
+  getIssues();
