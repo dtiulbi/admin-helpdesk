@@ -55,8 +55,6 @@ async function getAssigneeStats() {
         }
       }
     });
-
-    const sortedAssignees = Object.entries(assigneeCount).sort((a, b) => b[1] - a[1]);
     const tukangngerjain = {
       "valenrio66": "Valen Rionald",
       "christyuda": "Christian Yuda Pratama",
@@ -66,6 +64,8 @@ async function getAssigneeStats() {
       
   
     };
+    const sortedAssignees = Object.entries(assigneeCount).sort((a, b) => b[1] - a[1]);
+    
     assigneeStatsContainer.innerHTML = '';
 
     sortedAssignees.forEach(([assigneeLogin, count]) => { 
