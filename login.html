@@ -28,14 +28,12 @@
 
       if (adminLogin(username, password)) {
         alert("Login berhasil!");
-        // Lakukan tindakan setelah login berhasil
+        window.location.href = "index.html";
       } else {
         alert("Login gagal! Silakan coba lagi.");
-        // Lakukan tindakan setelah login gagal
       }
     });
 
-    // Dummy admin data
     const adminData = {
       username: "admin",
       password: "admin123",
@@ -43,9 +41,9 @@
 
     function adminLogin(username, password) {
       if (username === adminData.username && password === adminData.password) {
-        return true; // Login berhasil
+        return true; 
       } else {
-        return false; // Login gagal
+        return false;
       }
     }
   </script>
