@@ -1,5 +1,5 @@
 import { Octokit } from "https://cdn.skypack.dev/@octokit/core";
-import { tukangngerjain } from "./getissues.js";
+import { tukangngerjain } from "getissues.js";
 
 const nekot = 'Z2hwX2lmVW94RGVyaWdxWDdicXg4RzdFNklMczlQTUtGVTJnaVlZZg==';
 
